@@ -1,0 +1,32 @@
+{
+  "name": "sling402",
+  "version": "1.0.0",
+  "description": "Sling402 — Autonomous Blockchain Agent. Real Solana BPF runtime with $S402 and $wS402 tokens, 12 AI agents, SHA-256 mining, and DEX.",
+  "main": "server.js",
+  "bin": {
+    "sling402": "./bin/start.js"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "blockchain",
+    "solana",
+    "ai-agents",
+    "defi",
+    "sling402",
+    "psw"
+  ],
+  "author": "@Sling402",
+  "license": "MIT",
+  "homepage": "https://sling402.io",
+  "dependencies": {
+    "@solana/spl-token": "^0.4.14",
+    "@solana/web3.js": "^1.98.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "openai": "^4.86.0",
+    "solana-bankrun": "^0.4.0",
+    "ws": "^8.19.0"
+  }
+}
