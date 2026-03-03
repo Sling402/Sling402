@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: neuronic
+    name: sling402
     runtime: node
     buildCommand: npm install
     startCommand: node server.js
@@ -9,12 +9,12 @@ services:
       - key: PORT
         value: "3000"
       - key: PUBLIC_URL
-        value: "https://neuronic.com"
+        value: "https://sling402.io"
       - key: DATA_DIR
         value: "/data"
       - key: RUST_LOG
         value: "error"
     disk:
-      name: neuronic-data
+      name: sling402-data
       mountPath: /data
       sizeGB: 1

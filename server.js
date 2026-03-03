@@ -53,13 +53,31 @@ function getSession(req) {
 
 // Login endpoint
 app.post("/api/auth", (req, res) => {
-  const { password } = req.body;
+  const { password, mode } = req.body;
+  // Human mode — direct entry, no password needed
+  if (mode === "human") {
+    const token = generateSession();
+    validSessions.add(token);
+    return res.json({ success: true, token });
+  }
+  // Agent mode — direct entry for AI agents
+  if (mode === "agent") {
+    const token = generateSession();
+    validSessions.add(token);
+    return res.json({ success: true, token });
+  }
+  // Legacy password fallback
   if (password === SERVER_PASSWORD) {
     const token = generateSession();
     validSessions.add(token);
     return res.json({ success: true, token });
   }
   return res.status(401).json({ success: false, error: "Access denied" });
+});
+
+// Serve SKILL.md publicly for AI agents
+app.get("/skill.md", (req, res) => {
+  res.sendFile(path.join(__dirname, "SKILL.md"));
 });
 
 // Gate page — the ONLY page anyone sees without auth
@@ -71,8 +89,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "gate.html"));
 });
 
-// Gate assets only (mascot, favicon for the gate page)
-const GATE_ASSETS = ['/mascot.png', '/favicon.png', '/icon-192.png', '/pfp.png', '/gate.html', '/og-banner.png', '/og-square.png'];
+// Gate assets + PWA assets (served without auth)
+const GATE_ASSETS = ['/mascot.png', '/favicon.png', '/favicon.svg', '/logo.svg', '/icon-72.png', '/icon-96.png', '/icon-128.png', '/icon-144.png', '/icon-152.png', '/icon-192.png', '/icon-384.png', '/icon-512.png', '/icon-192-maskable.png', '/icon-512-maskable.png', '/manifest.json', '/sw.js', '/gate.html', '/og-banner.png', '/og-square.png'];
 app.use((req, res, next) => {
   if (GATE_ASSETS.includes(req.path)) {
     return res.sendFile(path.join(__dirname, "public", path.basename(req.path)));

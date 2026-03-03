@@ -21,7 +21,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-title" content="Sling402">
+<link rel="apple-touch-startup-image" href="/splash-iphone-x.png" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3)">
+<link rel="apple-touch-startup-image" href="/splash-iphone-8plus.png" media="(device-width:414px) and (device-height:736px) and (-webkit-device-pixel-ratio:3)">
+<link rel="apple-touch-startup-image" href="/splash-iphone-8.png" media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2)">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 :root{--bg:#111111;--bg2:#171717;--bg3:#1e1e1e;--bg4:#262626;--acc:#FF5722;--acc2:#FF8A65;--acc3:#FFC107;--red:#EF4444;--green:#22C55E;--t1:#E8E8E8;--t2:#999;--t3:#555;--t4:#333;--b1:rgba(255,87,34,.06);--b2:rgba(255,87,34,.12);--fn:'IBM Plex Mono',monospace;--body:'DM Sans',sans-serif;--sidebar-w:220px}
@@ -337,6 +342,7 @@ body{background:var(--bg);color:var(--t1);font-family:var(--body);font-size:1rem
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sOverlay').classList.toggle('open')}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sOverlay').classList.remove('open')}
 </script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js")}</script>
 <script src="/app.js"></script>
 </body>
 </html>
